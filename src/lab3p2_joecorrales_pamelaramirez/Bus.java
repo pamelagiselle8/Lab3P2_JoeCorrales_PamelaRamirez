@@ -1,17 +1,17 @@
 
 package lab3p2_joecorrales_pamelaramirez;
 
+import java.util.ArrayList;
+
 
 public class Bus extends Transporte{
-    // ArrayList <Alumno> alumnos = new ArrayList();
     int sillas = 0;
     int personasDePie = 0;
-    // Capacidad máxima de lista de alumnos = numero de sillas + capacidad de personas de pie
 
     public Bus() {
         
     }
-
+    
     public int getSillas() {
         return sillas;
     }
@@ -26,6 +26,10 @@ public class Bus extends Transporte{
 
     public void setPersonasDePie(int personasDePie) {
         this.personasDePie = personasDePie;
+    }
+    
+    public int getCapacidadMax(){
+        return sillas + personasDePie;
     }
 
     @Override

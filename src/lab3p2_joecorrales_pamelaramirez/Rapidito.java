@@ -1,11 +1,11 @@
 
 package lab3p2_joecorrales_pamelaramirez;
 
+import java.util.ArrayList;
+
 
 public class Rapidito extends Transporte{
-    // ArrayList <Alumno> alumnos = new ArrayList();
     int sillas = 0;
-    // int capacidadMax = sillas;
 
     public Rapidito() {
     }

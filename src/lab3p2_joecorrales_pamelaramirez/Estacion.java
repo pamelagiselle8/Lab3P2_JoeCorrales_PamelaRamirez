@@ -37,6 +37,6 @@ public class Estacion {
 
     @Override
     public String toString() {
-        return "Nombre: " + nombre + "\n Coordenada en x: " + x + "\n Coordenada en y: " + y;
+        return "\n Nombre: " + nombre + "\n Coordenada en x: " + x + "\n Coordenada en y: " + y;
     }
 }
