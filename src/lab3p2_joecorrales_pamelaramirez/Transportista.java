@@ -32,9 +32,9 @@ public class Transportista extends Persona {
     public String toString() {
         final StringBuilder sb = new StringBuilder("Transportista { ");
         sb.append(super.toString());
-        sb.append(", \nAños de experiencia = ").append(this.anniosExp);
-        sb.append(", \nApodo = '").append(this.apodo);
-        sb.append(" }");
+        sb.append(", \nAños de experiencia = ").append(this.anniosExp).append('\'');
+        sb.append(", \nApodo = '").append(this.apodo).append('\'');
+        sb.append(" \n}");
         return sb.toString();
     }
 }

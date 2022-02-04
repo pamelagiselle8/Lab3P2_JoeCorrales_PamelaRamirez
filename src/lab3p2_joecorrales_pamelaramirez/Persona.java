@@ -40,9 +40,9 @@ public class Persona {
     @Override
     public String toString() {
         final StringBuilder sb = new StringBuilder();
-        sb.append(" \nNombre = '").append(this.nombre);
-        sb.append(", \nIdentidad = '").append(this.identidad);
-        sb.append(", \nFecha de Nacimiento = '").append(this.cumpleAnnios);
+        sb.append(" \nNombre = '").append(this.nombre).append('\'');
+        sb.append(", \nIdentidad = '").append(this.identidad).append('\'');
+        sb.append(", \nFecha de Nacimiento = '").append(this.cumpleAnnios).append('\'');
         return sb.toString();
     }
 }
