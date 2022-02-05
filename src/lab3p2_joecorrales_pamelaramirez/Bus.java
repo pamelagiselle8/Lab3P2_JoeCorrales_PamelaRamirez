@@ -16,6 +16,8 @@ public class Bus extends Transporte{
         super(placa, color);
         this.sillas = sillas;
         this.personasDePie = personasDePie;
+        super.capacidad = sillas + personasDePie;
+        super.tipo = "Bus";
     }
     
     public int getSillas() {

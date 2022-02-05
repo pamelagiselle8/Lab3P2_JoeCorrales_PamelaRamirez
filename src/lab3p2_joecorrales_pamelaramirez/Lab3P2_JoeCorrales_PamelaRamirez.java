@@ -1,7 +1,12 @@
 package lab3p2_joecorrales_pamelaramirez;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.Scanner;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class Lab3P2_JoeCorrales_PamelaRamirez {
     static Scanner lea = new Scanner(System.in);
@@ -29,7 +34,7 @@ public class Lab3P2_JoeCorrales_PamelaRamirez {
             + "\n 6. Crear transporte"
             + "\n 7. Simulacion"
             + "\n 8. Listar clases"
-            + "\n 9. Listar rutas"
+            + "\n 9. Listar estaciones"
             + "\n 10. Listar alumnos"
             + "\n 11. Listar transportistas"
             + "\n 12. Listar transportes"
@@ -59,7 +64,7 @@ public class Lab3P2_JoeCorrales_PamelaRamirez {
                 break;
             }
             case 5: {
-                transportistas.add(crearTransportista());
+                crearTransportista();
                 ejecutar();
                 break;
             }
@@ -123,6 +128,7 @@ public class Lab3P2_JoeCorrales_PamelaRamirez {
                 + "\n 8. Quitar estacion"
                 + "\n 9. Imprimir transporte"
                 + "\n 10. Comenzar"
+                + "\n 11. Destruccion"
                 + "\n Ingrese una opción: ");
     }
     
@@ -130,52 +136,94 @@ public class Lab3P2_JoeCorrales_PamelaRamirez {
         switch(menuSimulacion()){
             case 1: {
                 escogerTr();
+                ejecutarSimulacion();
                 break;
             }
             case 2: {
                 subirAlumno();
+                ejecutarSimulacion();
                 break;
             }
             case 3: {
                 bajarAlumno();
+                ejecutarSimulacion();
                 break;
             }
             case 4: {
                 listarTr();
+                ejecutarSimulacion();
                 break;
             }
             case 5: {
                 escogerTransportista();
+                ejecutarSimulacion();
                 break;
             }
             case 6: {
                 transportista = new Transportista();
+                ejecutarSimulacion();
                 break;
             }
             case 7: {
                 agregarRuta();
+                ejecutarSimulacion();
                 break;
             }
             case 8: {
                 borrarRuta();
+                ejecutarSimulacion();
                 break;
             }
             case 9: {
+                System.out.println("\n Tipo de transporte: " + transporte.tipo);
                 System.out.println(transporte);
+                System.out.println("\n");
+                ejecutarSimulacion();
                 break;
             }
             case 10: {
-                
+                comenzar();
+                System.out.println("Fin");
+                ejecutar();
+                break;
+            }
+            case 11: {
+                for (Transporte t : transportes) {
+                    if (t == transporte) {
+                        listarTr();
+                        for (Alumno a : alumnos) {
+                            for (Alumno aa : t.alumnos) {
+                                if (a == aa) {
+                                    alumnos.remove(a);
+                                }
+                            }
+                        }
+                        transportes.remove(t);
+                    }
+                }
+                ejecutarSimulacion();
                 break;
             }
             case 0: {
-                System.exit(0);
+                ejecutar();
                 break;
             }
             default: {
                 System.out.println("\n Ingrese una opción válida. \n");
                 ejecutarSimulacion();
                 break;
+            }
+        }
+    }
+    
+    private static void comenzar(){
+        int cant = transporte.alumnos.size() / transporte.estaciones.size();
+        for (Estacion e : transporte.estaciones) {
+            System.out.println("Estación " + e.nombre);
+            System.out.println("Bajarán los siguientes alumnos:");
+            for (int i = 0; i < cant; i++) {
+                System.out.println("-" + transporte.getAlumnos().get(i).nombre);
+                transporte.alumnos.remove(i);
             }
         }
     }
@@ -239,12 +287,24 @@ public class Lab3P2_JoeCorrales_PamelaRamirez {
     }
     
     private static void subirAlumno(){
-        System.out.print("Ingrese el id del alumno: ");
-        String id = lea.next();
-        for (Alumno a : alumnos) {
-            if (a.idEstudiante.equalsIgnoreCase(id)) {
-                transporte.getAlumnos().add(a);
+        System.out.println(transporte.alumnos);
+        if (transporte.alumnos.size() <= transporte.capacidad) {
+            System.out.print("Ingrese el id estudiantil del alumno: ");
+            String id = lea.next();
+            boolean si = false;
+            for (Alumno a : alumnos) {
+                if (a.idEstudiante.equalsIgnoreCase(id)) {
+                    transporte.alumnos.add(a);
+                    alumnos.remove(a);
+                    si = true;
+                }
             }
+            if (!si) {
+                System.out.println("\n No existe ningun alumno con ese id \n");
+            }
+        }
+        else{
+            System.out.println("\n Se ha alcanzado la capacidad máxima del vehículo. \n");
         }
     }
     
@@ -288,7 +348,7 @@ public class Lab3P2_JoeCorrales_PamelaRamirez {
             tipoTransporte(placa, color);
         }
         else{
-            System.out.println("\n Ya existe otro tranporte con esa placa. \n");
+            System.out.println("\n Ya existe otro transporte con esa placa. \n");
             agregarTransporte();
         }
     }
@@ -385,43 +445,66 @@ public class Lab3P2_JoeCorrales_PamelaRamirez {
     }
 
     private static void crearAlumno() {
+        boolean si = true;
         String nombre = myNextString("Nombre del estudiante: ");
         String id = myNextString("Identidad: ");
-        String cumpleAnnios = myNextString("Fecha de nacimiento: ");
-        String idE = myNextString("Identidad estudiantil: ");
-        alumnos.add(new Alumno(nombre, id, cumpleAnnios, idE));
-    }
-
-    private static Estacion crearEstacion() {
-        String nombre = myNextString("Nombre de la estacion: ");
-        int x = myNextInt("Coordenada en x: ");
-        int y = myNextInt("Coordenada en y: ");
-        return new Estacion(nombre, x, y);
-    }
-
-    private static Transportista crearTransportista() {
-        String nombre = myNextString("Nombre del transportista: ");
-        String id = myNextString("Identidad: ");
-        String cumpleAnnios = myNextString("Fecha de nacimiento");
-        int anniosExp = myNextInt("Años de experiencia: ");
-        String apodo = myNextString("Apodo del transportista: ");
-        return new Transportista(nombre, id, cumpleAnnios, anniosExp, apodo);
-    }
-
-    private static Transporte crearTransporte() {
-        String placa = myNextString("Ingrese la placa: ");
-        String color = myNextString("Ingrese el color del transporte: ");
-        for (int i = 0; i < transportes.size(); i++) {
-            if (placa.equalsIgnoreCase(transportes.get(i).getPlaca())) {
-                System.out.println("Esa placa ya existe!");
+        for (Alumno a : alumnos) {
+            if (a.identidad.equalsIgnoreCase(id)) {
+                si = false;
             }
         }
-        return new Transporte(placa, color);
+        if (si) {
+            String cumple = myNextString("Fecha de nacimiento en formato 'día/mes/año': ");
+            Date fecha = new Date();
+            SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
+            try {
+                fecha = formato.parse(cumple);
+            } catch (ParseException ex) {
+                Logger.getLogger(Lab3P2_JoeCorrales_PamelaRamirez.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            String idE = myNextString("Identidad estudiantil: ");
+            for (Alumno a : alumnos) {
+                if (a.idEstudiante.equalsIgnoreCase(idE)) {
+                    si = false;
+                }
+            }
+            if (si) {
+                alumnos.add(new Alumno(nombre, id, fecha, idE));
+            }
+            else{
+                System.out.println("\n No es posible agregar el alumno porque ya existe un alumno con la misma identidad estudiantil.");
+            }
+        }
+        else{
+            System.out.println("\n No es posible agregar el alumno porque ya existe un alumno con la misma identidad.");
+        }
     }
 
-
-    private static void simulacion() {
-        //Codigo de la simulacion
+    private static void crearTransportista() {
+        boolean si = true;
+        String nombre = myNextString("Nombre del transportista: ");
+        String id = myNextString("Identidad: ");
+        for (Transportista a : transportistas) {
+            if (a.identidad.equalsIgnoreCase(id)) {
+                si = false;
+            }
+        }
+        if (si) {
+            String cumple = myNextString("Fecha de nacimiento en formato 'día/mes/año': ");
+            Date fecha = new Date();
+            SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
+            try {
+                fecha = formato.parse(cumple);
+            } catch (ParseException ex) {
+                Logger.getLogger(Lab3P2_JoeCorrales_PamelaRamirez.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            int anniosExp = myNextInt("Años de experiencia: ");
+            String apodo = myNextString("Apodo del transportista: ");
+            transportistas.add(new Transportista(nombre, id, fecha, anniosExp, apodo));
+        }
+        else{
+            System.out.println("\n No es posible agregar el transportista porque ya existe un transportista con la misma identidad.");
+        }
     }
 
     private static void listarClases() {

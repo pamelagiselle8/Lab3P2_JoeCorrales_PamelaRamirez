@@ -1,12 +1,14 @@
 package lab3p2_joecorrales_pamelaramirez;
 
+import java.util.Date;
+
 public class Transportista extends Persona {
     protected int anniosExp;
     protected String apodo;
 
     public Transportista() {}
 
-    public Transportista(String nombre, String identidad, String cumpleAnnios, int anniosExp, String apodo) {
+    public Transportista(String nombre, String identidad, Date cumpleAnnios, int anniosExp, String apodo) {
         super(nombre, identidad, cumpleAnnios);
         this.anniosExp = anniosExp;
         this.apodo = apodo;

@@ -4,15 +4,17 @@ package lab3p2_joecorrales_pamelaramirez;
 
 public class Taxi extends Transporte{
     int numTaxi = 0;
-    int capacidadMax = 4;
+    
 
     public Taxi() {
-        
+        super.capacidad = 4;
     }
     
     public Taxi(String placa, String color, int numTaxi) {
         super(placa, color);
         this.numTaxi = numTaxi;
+        super.capacidad = 4;
+        super.tipo = "Taxi";
     }
 
     public int getNumTaxi() {
@@ -24,15 +26,15 @@ public class Taxi extends Transporte{
     }
 
     public int getCapacidadMax() {
-        return capacidadMax;
+        return super.capacidad;
     }
 
     public void setCapacidadMax(int capacidadMax) {
-        this.capacidadMax = capacidadMax;
+        super.capacidad = capacidadMax;
     }
 
     @Override
     public String toString() {
-        return super.toString() + "\n Numero de taxi: " + numTaxi + "\n Capacidad maxima: " + capacidadMax;
+        return super.toString() + "\n Numero de taxi: " + numTaxi + "\n Capacidad maxima: " + super.capacidad;
     }
 }

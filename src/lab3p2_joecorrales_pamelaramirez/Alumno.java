@@ -1,6 +1,7 @@
 package lab3p2_joecorrales_pamelaramirez;
 
 import java.util.ArrayList;
+import java.util.Date;
 
 public class Alumno extends Persona {
     protected String idEstudiante;
@@ -8,7 +9,7 @@ public class Alumno extends Persona {
 
     public Alumno() {}
 
-    public Alumno(String nombre, String identidad, String cumpleAnnios, String idEstudiante) {
+    public Alumno(String nombre, String identidad, Date cumpleAnnios, String idEstudiante) {
         super(nombre, identidad, cumpleAnnios);
         this.idEstudiante = idEstudiante;
         clases = new ArrayList<Clase>();

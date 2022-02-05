@@ -10,6 +10,8 @@ public class Transporte {
     protected Transportista transportista = new Transportista();
     protected ArrayList <Estacion> estaciones = new ArrayList();
     protected ArrayList <Alumno> alumnos = new ArrayList();
+    int capacidad = 0;
+    String tipo;
     
     public Transporte() {
         

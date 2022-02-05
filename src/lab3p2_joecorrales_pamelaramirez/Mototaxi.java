@@ -3,10 +3,11 @@ package lab3p2_joecorrales_pamelaramirez;
 
 
 public class Mototaxi extends Transporte{
-    int capacidadMax = 2;
-
+    
+    
     public Mototaxi() {
-        
+        super.capacidad = 2;
+        super.tipo = "Mototaxi";
     }
 
     public Mototaxi(String placa, String color) {
@@ -14,15 +15,15 @@ public class Mototaxi extends Transporte{
     }
     
     public int getCapacidadMax() {
-        return capacidadMax;
+        return super.capacidad;
     }
 
     public void setCapacidadMax(int capacidadMax) {
-        this.capacidadMax = capacidadMax;
+        super.capacidad = capacidadMax;
     }
 
     @Override
     public String toString() {
-        return super.toString() + "\n Capacidad maxima: " + capacidadMax;
+        return super.toString() + "\n Capacidad maxima: " + super.capacidad;
     }
 }

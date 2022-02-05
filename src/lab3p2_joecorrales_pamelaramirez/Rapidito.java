@@ -14,6 +14,7 @@ public class Rapidito extends Transporte{
     public Rapidito(String placa, String color, int sillas){
         super(placa, color);
         this.sillas = sillas;
+        super.tipo = "Rapidito";
     }
 
     public int getSillas() {
@@ -22,7 +23,9 @@ public class Rapidito extends Transporte{
 
     public void setSillas(int sillas) {
         this.sillas = sillas;
+        super.capacidad = sillas;
     }
+    
 
     @Override
     public String toString() {

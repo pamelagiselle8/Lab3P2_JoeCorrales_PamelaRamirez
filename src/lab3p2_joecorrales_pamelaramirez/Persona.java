@@ -1,13 +1,15 @@
 package lab3p2_joecorrales_pamelaramirez;
 
+import java.util.Date;
+
 public class Persona {
     protected String nombre;
     protected String identidad;
-    protected String cumpleAnnios;
+    protected Date cumpleAnnios;
 
     public Persona() {}
 
-    public Persona(String nombre, String identidad, String cumpleAnnios) {
+    public Persona(String nombre, String identidad, Date cumpleAnnios) {
         this.nombre = nombre;
         this.identidad = identidad;
         this.cumpleAnnios = cumpleAnnios;
@@ -29,11 +31,11 @@ public class Persona {
         this.identidad = identidad;
     }
 
-    public String getCumpleAnnios() {
+    public Date getCumpleAnnios() {
         return cumpleAnnios;
     }
 
-    public void setCumpleAnnios(String cumpleAnnios) {
+    public void setCumpleAnnios(Date cumpleAnnios) {
         this.cumpleAnnios = cumpleAnnios;
     }
 
