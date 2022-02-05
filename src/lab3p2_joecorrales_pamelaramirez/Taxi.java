@@ -7,6 +7,12 @@ public class Taxi extends Transporte{
     int capacidadMax = 4;
 
     public Taxi() {
+        
+    }
+    
+    public Taxi(String placa, String color, int numTaxi) {
+        super(placa, color);
+        this.numTaxi = numTaxi;
     }
 
     public int getNumTaxi() {

@@ -15,6 +15,11 @@ public class Transporte {
         
     }
     
+    public Transporte(String placa, String color) {
+        this.placa = placa;
+        this.color = color;
+    }
+    
     public String getPlaca() {
         return placa;
     }

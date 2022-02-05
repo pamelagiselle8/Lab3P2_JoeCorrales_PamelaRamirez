@@ -8,6 +8,12 @@ public class Rapidito extends Transporte{
     int sillas = 0;
 
     public Rapidito() {
+        
+    }
+    
+    public Rapidito(String placa, String color, int sillas){
+        super(placa, color);
+        this.sillas = sillas;
     }
 
     public int getSillas() {

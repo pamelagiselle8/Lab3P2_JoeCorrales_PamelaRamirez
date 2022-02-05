@@ -6,11 +6,17 @@ public class Estacion {
     String nombre = "";
     int x = 0;
     int y = 0;
-
+    
     public Estacion() {
         
     }
-
+    
+    public Estacion(String nombre, int x, int y) {
+        this.nombre = nombre;
+        this.x = x;
+        this.y = y;
+    }
+    
     public String getNombre() {
         return nombre;
     }

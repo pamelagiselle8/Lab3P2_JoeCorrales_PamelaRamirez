@@ -9,6 +9,10 @@ public class Mototaxi extends Transporte{
         
     }
 
+    public Mototaxi(String placa, String color) {
+        super(placa, color);
+    }
+    
     public int getCapacidadMax() {
         return capacidadMax;
     }
