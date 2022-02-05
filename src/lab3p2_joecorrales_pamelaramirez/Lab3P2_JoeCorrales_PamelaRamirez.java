@@ -53,5 +53,4 @@ public class Lab3P2_JoeCorrales_PamelaRamirez {
         System.out.print(mensaje);
         return input.nextInt();
     }
-
 }

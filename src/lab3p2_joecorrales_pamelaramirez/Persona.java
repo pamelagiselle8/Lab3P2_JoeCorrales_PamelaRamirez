@@ -2,14 +2,14 @@ package lab3p2_joecorrales_pamelaramirez;
 
 public class Persona {
     protected String nombre;
-    protected String identidad;
+    protected static int identidad;
     protected String cumpleAnnios;
 
     public Persona() {}
 
-    public Persona(String nombre, String identidad, String cumpleAnnios) {
+    public Persona(String nombre, String cumpleAnnios) {
         this.nombre = nombre;
-        this.identidad = identidad;
+        identidad = Persona.identidad++;
         this.cumpleAnnios = cumpleAnnios;
     }
 
@@ -21,13 +21,10 @@ public class Persona {
         this.nombre = nombre;
     }
 
-    public String getIdentidad() {
+    public int getIdentidad() {
         return identidad;
     }
 
-    public void setIdentidad(String identidad) {
-        this.identidad = identidad;
-    }
 
     public String getCumpleAnnios() {
         return cumpleAnnios;

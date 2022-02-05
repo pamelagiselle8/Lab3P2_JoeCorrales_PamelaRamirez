@@ -3,23 +3,19 @@ package lab3p2_joecorrales_pamelaramirez;
 import java.util.ArrayList;
 
 public class Alumno extends Persona {
-    protected String idEstudiante;
+    protected static int idEstudiante;
     protected ArrayList<Clase> clases;
 
     public Alumno() {}
 
-    public Alumno(String nombre, String identidad, String cumpleAnnios, String idEstudiante) {
-        super(nombre, identidad, cumpleAnnios);
-        this.idEstudiante = idEstudiante;
-        clases = new ArrayList<Clase>();
+    public Alumno(String nombre, String cumpleAnnios) {
+        super(nombre, cumpleAnnios);
+        idEstudiante = Alumno.idEstudiante++;
+        clases = new ArrayList<>();
     }
 
-    public String getIdEstudiante() {
+    public int getIdEstudiante() {
         return idEstudiante;
-    }
-
-    public void setIdEstudiante(String idEstudiante) {
-        this.idEstudiante = idEstudiante;
     }
 
     //=============================

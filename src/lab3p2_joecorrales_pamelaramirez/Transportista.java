@@ -6,8 +6,8 @@ public class Transportista extends Persona {
 
     public Transportista() {}
 
-    public Transportista(String nombre, String identidad, String cumpleAnnios, int anniosExp, String apodo) {
-        super(nombre, identidad, cumpleAnnios);
+    public Transportista(String nombre, String cumpleAnnios, int anniosExp, String apodo) {
+        super(nombre, cumpleAnnios);
         this.anniosExp = anniosExp;
         this.apodo = apodo;
     }
