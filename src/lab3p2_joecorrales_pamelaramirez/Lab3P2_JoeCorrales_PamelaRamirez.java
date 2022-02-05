@@ -10,8 +10,8 @@ public class Lab3P2_JoeCorrales_PamelaRamirez {
     static ArrayList <Estacion> estaciones = new ArrayList();
     static ArrayList <Transporte> transportes = new ArrayList();
     static ArrayList <Transportista> transportistas = new ArrayList();
-    //static Transporte transporte = new Transporte();
-    //static Transportista transportista = new Transportista();
+    static Transporte transporte = new Transporte();
+    static Transportista transportista = new Transportista();
     
     public static void main(String[] args) {
         menu();
@@ -182,6 +182,16 @@ public class Lab3P2_JoeCorrales_PamelaRamirez {
     private static int myNextInt(String mensaje) {
         System.out.print(mensaje);
         return lea.nextInt();
+    }
+    
+    private static void subirAlumno(){
+        System.out.print("Ingrese el id del alumno: ");
+        String id = lea.next();
+        for (Alumno a : alumnos) {
+            if (a.idEstudiante.equalsIgnoreCase(id)) {
+                transporte.getAlumnos().add(a);
+            }
+        }
     }
     
     private static void agregarEstacion(){
