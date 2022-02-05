@@ -15,7 +15,7 @@ public class Lab3P2_JoeCorrales_PamelaRamirez {
     static ArrayList <Clase> clases = new ArrayList();
     
     public static void main(String[] args) {
-        menu();
+        ejecutar();
     }
 
     private static int menu(){
@@ -69,7 +69,7 @@ public class Lab3P2_JoeCorrales_PamelaRamirez {
                 break;
             }
             case 7: {
-                
+                ejecutarSimulacion();
                 ejecutar();
                 break;
             }
@@ -79,7 +79,7 @@ public class Lab3P2_JoeCorrales_PamelaRamirez {
                 break;
             }
             case 9: {
-                
+                listarEstaciones();
                 ejecutar();
                 break;
             }
@@ -153,15 +153,15 @@ public class Lab3P2_JoeCorrales_PamelaRamirez {
                 break;
             }
             case 7: {
-                
+                agregarRuta();
                 break;
             }
             case 8: {
-                
+                borrarRuta();
                 break;
             }
             case 9: {
-                
+                System.out.println(transporte);
                 break;
             }
             case 10: {
@@ -182,7 +182,36 @@ public class Lab3P2_JoeCorrales_PamelaRamirez {
 
     private static int myNextInt(String mensaje) {
         System.out.print(mensaje);
-        return lea.nextInt();
+        int op = lea.nextInt();
+        return op;
+    }
+    
+    private static void agregarRuta(){
+        String nom = myNextString("Ingrese el nombre de la estación a añadir: ");
+        boolean si = false;
+        for (Estacion e : estaciones) {
+            if (e.nombre.equalsIgnoreCase(nom)) {
+                transporte.estaciones.add(e);
+                si = true;
+            }
+        }
+        if (!si) {
+            System.out.println("\n No existe una estacion con el nombre ingresado.\n");
+        }
+    }
+    
+    private static void borrarRuta(){
+        String nom = myNextString("Ingrese el nombre de la estación a añadir: ");
+        boolean si = false;
+        for (Estacion e : estaciones) {
+            if (e.nombre.equalsIgnoreCase(nom)) {
+                transporte.estaciones.remove(e);
+                si = true;
+            }
+        }
+        if (!si) {
+            System.out.println("\n No existe una estacion con el nombre ingresado.\n");
+        }
     }
     
     private static void listarTr(){
@@ -266,12 +295,13 @@ public class Lab3P2_JoeCorrales_PamelaRamirez {
 
     
     private static void tipoTransporte(String placa, String color){
-        switch(myNextInt("\nDeclare el tipo de transporte:"
+        int op = myNextInt("\nDeclare el tipo de transporte:"
                 + "\n1. Bus"
                 + "\n 2. Rapidito"
                 + "\n 3. Taxi"
                 + "\n 4. Mototaxi"
-                + "\n Ingrese una opcion: ")){
+                + "\n Ingrese una opcion: ");
+        switch(op){
             case 1: {
                 System.out.print("Ingrese numero de sillas: ");
                 int sillas = lea.nextInt();
@@ -356,8 +386,10 @@ public class Lab3P2_JoeCorrales_PamelaRamirez {
 
     private static void crearAlumno() {
         String nombre = myNextString("Nombre del estudiante: ");
+        String id = myNextString("Identidad: ");
         String cumpleAnnios = myNextString("Fecha de nacimiento: ");
-        alumnos.add(new Alumno(nombre, cumpleAnnios));
+        String idE = myNextString("Identidad estudiantil: ");
+        alumnos.add(new Alumno(nombre, id, cumpleAnnios, idE));
     }
 
     private static Estacion crearEstacion() {
@@ -369,10 +401,11 @@ public class Lab3P2_JoeCorrales_PamelaRamirez {
 
     private static Transportista crearTransportista() {
         String nombre = myNextString("Nombre del transportista: ");
+        String id = myNextString("Identidad: ");
         String cumpleAnnios = myNextString("Fecha de nacimiento");
         int anniosExp = myNextInt("Años de experiencia: ");
         String apodo = myNextString("Apodo del transportista: ");
-        return new Transportista(nombre, cumpleAnnios, anniosExp, apodo);
+        return new Transportista(nombre, id, cumpleAnnios, anniosExp, apodo);
     }
 
     private static Transporte crearTransporte() {
